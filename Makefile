@@ -20,7 +20,7 @@ CCFLAGS  := -Wall -Wextra -Werror -Os
 CCFLAGS  += $(TARGET_INCLUDE)
 CXXFLAGS := -std=c++20
 
-LDFLAGS  :=
+LDFLAGS  := -static
 
 TARGET_OBJ     := $(patsubst %.cpp,$(OBJDIR)/%.o,$(TARGET_CXX_SRC)) \
                   $(patsubst %.c,$(OBJDIR)/%.o,$(TARGET_CC_SRC))
