@@ -14,7 +14,9 @@ void Mastermind::play() {
     std::cout << "CORRECT_COLOR(" << CORRECT_COLOR << ") ";
     std::cout << std::endl;
     std::cout << "Available numbers: ";
-    for (int i = 1; i <= MaxNumColors; ++i) { std::cout << i << " "; }
+    for (int i = 1; i <= MaxNumColors; ++i) {
+        std::cout << i << " ";
+    }
     std::cout << std::endl;
 
     while (not gameOver) {
@@ -25,7 +27,9 @@ void Mastermind::play() {
         std::shuffle(result.begin(), result.end(), mt);
 
         std::cout << "Result: ";
-        for (int i: result) { std::cout << i << " "; }
+        for (int i: result) {
+            std::cout << i << " ";
+        }
         std::cout << std::endl;
 
         if (allElementsEqual(result, static_cast<int>(CORRECT_POSITION))) {
@@ -34,7 +38,9 @@ void Mastermind::play() {
         } else if (currentAttempt + 1 >= MaxAttempts) {
             std::cout << "Game over! You couldn't guess the secret code." << std::endl;
             std::cout << "The secret code was: ";
-            for (int i: secretCode) { std::cout << i << " "; }
+            for (int i: secretCode) {
+                std::cout << i << " ";
+            }
             std::cout << std::endl;
             gameOver = true;
         } else {
@@ -49,11 +55,15 @@ void Mastermind::generateSecretCode() {
     std::mt19937 gen(rd());
     std::uniform_int_distribution<int> dis(1, MaxNumColors);
 
-    for (int i = 0; i < MaxCodeLength; ++i) { secretCode.at(i) = dis(gen); }
+    for (int i = 0; i < MaxCodeLength; ++i) {
+        secretCode.at(i) = dis(gen);
+    }
 
 #if 1
     std::cout << "The secret code is: ";
-    for (int i: secretCode) { std::cout << i << " "; }
+    for (int i: secretCode) {
+        std::cout << i << " ";
+    }
     std::cout << std::endl;
 #endif
 }
@@ -61,7 +71,9 @@ void Mastermind::generateSecretCode() {
 Mastermind::Combination Mastermind::getGuess() {
     Combination guess{};
     int num;
-    for (int i = 0; i < MaxCodeLength && std::cin >> num; ++i) { guess.at(i) = num; }
+    for (int i = 0; i < MaxCodeLength && std::cin >> num; ++i) {
+        guess.at(i) = num;
+    }
     std::cin.clear();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     return guess;
