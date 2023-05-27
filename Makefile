@@ -19,7 +19,7 @@ TARGET_EXE_OUTPUT := $(OBJDIR)/$(TARGET)
 
 CCFLAGS  := -Wall -Wextra -Werror -Os
 CCFLAGS  += $(TARGET_INCLUDE)
-CXXFLAGS := -std=c++20
+CXXFLAGS := -std=c++17
 
 LDFLAGS  := -static
 

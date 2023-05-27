@@ -6,6 +6,12 @@
 
 class Mastermind {
 private:
+    enum {
+        INVALID_COLOR,
+        CORRECT_POSITION,
+        CORRECT_COLOR,
+    };
+
     constexpr static int MaxCodeLength = 4;
     constexpr static int MaxNumColors = 6;
     constexpr static int MaxAttempts = 10;
@@ -18,12 +24,6 @@ private:
 
     std::random_device rd;
     std::mt19937 mt;
-
-    enum {
-        INVALID_COLOR,
-        CORRECT_POSITION,
-        CORRECT_COLOR,
-    };
 
 public:
     Mastermind()
@@ -39,6 +39,9 @@ private:
     static Combination getGuess();
 
     constexpr Combination checkGuess(const Combination &guess);
+
+    template<typename T, size_t N>
+    bool allElementsEqual(const std::array<T, N> &arr, T value);
 };
 
 #endif//MASTERMIND_MASTERMIND_HPP

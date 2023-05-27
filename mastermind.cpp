@@ -28,7 +28,7 @@ void Mastermind::play() {
         for (int i: result) { std::cout << i << " "; }
         std::cout << std::endl;
 
-        if (std::ranges::all_of(result.cbegin(), result.cend(), [](int i) { return i == CORRECT_POSITION; })) {
+        if (allElementsEqual(result, static_cast<int>(CORRECT_POSITION))) {
             std::cout << "Congratulations! You guessed the secret code!" << std::endl;
             gameOver = true;
         } else if (currentAttempt + 1 >= MaxAttempts) {
@@ -95,4 +95,14 @@ constexpr Mastermind::Combination Mastermind::checkGuess(const Combination &gues
     }
 
     return result;
+}
+
+template<typename T, size_t N>
+bool Mastermind::allElementsEqual(const std::array<T, N> &arr, T value) {
+    for (const auto &element: arr) {
+        if (element != value) {
+            return false;
+        }
+    }
+    return true;
 }
