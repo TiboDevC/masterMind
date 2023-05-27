@@ -40,6 +40,8 @@ private:
 
     constexpr Combination checkGuess(const Combination &guess);
 
+    void displayResult(Combination& result);
+
     template<typename T, size_t N>
     bool allElementsEqual(const std::array<T, N> &arr, T value);
 };

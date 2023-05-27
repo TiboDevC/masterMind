@@ -8,11 +8,9 @@ void Mastermind::play() {
     std::cout << "Guess the secret code by entering numbers separated by spaces." << std::endl;
     std::cout << "Max number of attempts: " << MaxAttempts << std::endl;
     std::cout << "Code length: " << MaxCodeLength << std::endl;
-    std::cout << "Result: ";
-    std::cout << "INVALID_COLOR(" << INVALID_COLOR << ") ";
-    std::cout << "CORRECT_POSITION(" << CORRECT_POSITION << ") ";
-    std::cout << "CORRECT_COLOR(" << CORRECT_COLOR << ") ";
-    std::cout << std::endl;
+    std::cout << "BLANK: invalid position and invalid color" << std::endl;
+    std::cout << "WHITE: invalid position and correct color" << std::endl;
+    std::cout << "BLACK: correct position and correct color" << std::endl;
     std::cout << "Available numbers: ";
     for (int i = 1; i <= MaxNumColors; ++i) {
         std::cout << i << " ";
@@ -24,13 +22,7 @@ void Mastermind::play() {
         const Combination guess = getGuess();
         Combination result = checkGuess(guess);
 
-        std::shuffle(result.begin(), result.end(), mt);
-
-        std::cout << "Result: ";
-        for (int i: result) {
-            std::cout << i << " ";
-        }
-        std::cout << std::endl;
+        displayResult(result);
 
         if (allElementsEqual(result, static_cast<int>(CORRECT_POSITION))) {
             std::cout << "Congratulations! You guessed the secret code!" << std::endl;
@@ -107,6 +99,28 @@ constexpr Mastermind::Combination Mastermind::checkGuess(const Combination &gues
     }
 
     return result;
+}
+
+void Mastermind::displayResult(Mastermind::Combination &result) {
+    std::shuffle(result.begin(), result.end(), mt);
+
+    std::cout << "Result: ";
+    for (const auto &i: result) {
+        switch (i) {
+            case INVALID_COLOR:
+                std::cout << "BLANK ";
+                break;
+            case CORRECT_COLOR:
+                std::cout << "WHITE ";
+                break;
+            case CORRECT_POSITION:
+                std::cout << "BLACK ";
+                break;
+            default:
+                break;
+        }
+    }
+    std::cout << std::endl;
 }
 
 template<typename T, size_t N>
