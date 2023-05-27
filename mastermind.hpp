@@ -8,8 +8,8 @@ class Mastermind {
 private:
     enum {
         INVALID_COLOR,
-        CORRECT_POSITION,
         CORRECT_COLOR,
+        CORRECT_POSITION,
     };
 
     constexpr static int MaxCodeLength = 4;
