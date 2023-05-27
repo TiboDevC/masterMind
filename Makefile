@@ -7,6 +7,7 @@ OBJDIR          := objs
 
 # Declare all source file
 SRC_FILE       := main.cpp
+SRC_FILE       += mastermind.cpp
 
 TARGET_CC_SRC  :=
 TARGET_CXX_SRC := $(SRC_FILE)
